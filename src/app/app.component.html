@@ -1,46 +1,43 @@
-<!DOCTYPE html>
-<html lang="en" >
-
-  <head>
-    <meta charset="UTF-8">
-    <title>Projeto Ada AWS</title>
-      
-  </head>
-
-  <body>
-  <div class="container">
-      <div class="title">
-        <h2>Upload de relatório</h2>
-      </div>
-
-      <div class="form-upload">
-        <form (submit)="onSubmit($event)">
-          <div class="form-group">
-           <label for="email">E-mail:</label>
-          <input
-            type="email"
-            id="email"
-            [formControl]="emailControl"
-            placeholder="Digite seu e-mail"
-            required
-          />
-          <div *ngIf="emailControl.invalid && emailControl.touched" class="error">
-            E-mail inválido.
+      <div class="container">
+        <div class="title">
+          <h2>Upload de Relatório</h2>
         </div>
-          </div>
 
-          <div class="form-group">
-            <label for="files">Arquivos:</label>
-            <input type="file" id="files" name="file" (change)="onFileChange($event)" accept=".xlsx" />
-          </div>
+        <div class="form-upload">
+          <form (submit)="onSubmit($event)">
+            <div class="form-group">
+              <label para="email">E-mail:</label>
+              <input
+                type="email"
+                id="email"
+                [(ngModel)]="email"
+                name="email"
+                (input)="validateEmail()"
+                placeholder="Digite seu e-mail"
+                required
+              />
+              <div *ngIf="!isEmailValid && email" class="error">
+                E-mail inválido.
+              </div>
+            </div>
 
-          <div *ngIf="errorMessage" class="error">
-            {{ errorMessage }}
-          </div>
+            <div class="form-group">
+              <label para="files">Arquivos:</label>
+              <input
+                type="file"
+                id="files"
+                name="file"
+                (change)="onFileChange($event)"
+                accept=".xlsx"
+              />
+            </div>
 
-          <button type="submit">Confirmar</button>
-        </form>
+            <div *ngIf="errorMessage" class="error">
+              {{ errorMessage }}
+            </div>
+
+            <button type="submit">Confirmar</button>
+          </form>
+        </div>
       </div>
-    </div>    
-  </body>
-</html>
+
